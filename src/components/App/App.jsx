@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -26,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <Header openSidebar={openSidebar} />
-      <Container background= "src/images/main_page.jpg" maxWidth="md" sx={{ mt: "20px"}}>
+      <Container maxWidth="md" sx={{ mt: "20px" }}>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<CharactersPage />} />

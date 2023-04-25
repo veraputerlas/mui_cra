@@ -20,7 +20,7 @@ function ProductPage() {
         {product &&
           product.map((item) => {
             return (
-              <li key={item.id.slice}>
+              <li key={item.id}>
                 <Link to={`/product/${item.id}`}>
                   <h2>{item.title}</h2>
                 </Link>
