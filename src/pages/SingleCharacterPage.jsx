@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useService from "../helpers/Service";
+import "../../src/css/character.css"
 
 function SingleCharacterPage() {
   const [character, setCharacter] = useState(null);
@@ -19,7 +20,7 @@ function SingleCharacterPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (id === 0) return;
+    if (Number(id) === 0) return;
     getCharacterById(id).then((res) => {
       setCharacter(res);
     });
@@ -33,49 +34,65 @@ function SingleCharacterPage() {
   }, [character]);
 
   return (
-    <div>
+    <div className="character">
+  
       {character ? (
         <>
           <Typography
             variant="h2"
             sx={{
+              display: "flex",
+              justifyContent: "center",
               textAlign: "center",
               fontSize: "34px",
-              padding: "10px 0",
+              padding: "20px 0",
               fontWeight: "bold",
-              color: "#050398"
+              color: "#050398",
+              width: "100px"
             }}
           >
             {character.name}
           </Typography>
+          <div>
+          <img width="200px"
+    src="https://gamerwall.pro/uploads/posts/2021-07/1627056530_50-gamerwall-pro-p-bronya-elfov-art-kartinki-52.png"
+    srcSet="https://gamerwall.pro/uploads/posts/2021-07/1627056530_50-gamerwall-pro-p-bronya-elfov-art-kartinki-52.png"
+    alt=""
+  />
           <Paper
             sx={{
               p: 2,
-              maxWidth: 1000,
+              width: "300px",
               flexGrow: 1,
-              justifyContent: "end",
+              display: "flex",
+              justifyContent: "start",
+              alignItems: "center",
               backgroundColor: "inherit", 
               border: "none",
               color: "#050398"
             }}
           >
             <Grid
-              container
-              spacing={2}
-              direction="row"
-              justifyContent="center"
-
+            
             >
+               
               <Cell header="Имя" textContent={character.name} />
               <Cell header="Раса" textContent={character.race} />
               <Cell header="Пол" textContent={character.gender} />
               <Cell header="Дата рождения" textContent={character.birth} />
               <Cell header="Дата смерти" textContent={character.death} />
 
-              <Button
+              
+            </Grid>
+            
+          </Paper>
+          </div>
+          <Button
                 variant="outlined"
                 color="primary"
                 sx={{
+                  display: "flex",
+                  justifyContent: "center",
                   margin: "0 10px ",
                 }}
               >
@@ -83,8 +100,6 @@ function SingleCharacterPage() {
                   Посетить страницу на Википедии
                 </Link>
               </Button>
-            </Grid>
-          </Paper>
         </>
       ) : (
         <Stack
@@ -98,12 +113,6 @@ function SingleCharacterPage() {
           }}
         >
           <CircularProgress color="inherit" />
-          {/* <Skeleton variant="rectangular" width={"100%"} height={60} />
-          <Skeleton variant="rectangular" width={"50%"} height={80} />
-          <Skeleton variant="rounded" width={"50%"} height={60} />
-          <Skeleton variant="rounded" width={"50%"} height={80} />
-          <Skeleton variant="rounded" width={"50%"} height={60} />
-          <Skeleton variant="rounded" width={"50%"} height={80} /> */}
         </Stack>
       )}
     </div>

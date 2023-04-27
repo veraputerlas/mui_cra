@@ -13,7 +13,7 @@ import {
 import Header from "../ui/Header";
 import SideBar from "../ui/Sidebar";
 import Layout from "../ui/Layout";
-import app from "../App/app.css"
+import "../App/app.css"
 
 function App() {
   const [openSideBar, setOpenSideBar] = useState(false);
