@@ -53,7 +53,7 @@ function SingleCharacterPage() {
           >
             {character.name}
           </Typography>
-          <div>
+          <div className="character_title">
           <img width="200px"
     src="https://gamerwall.pro/uploads/posts/2021-07/1627056530_50-gamerwall-pro-p-bronya-elfov-art-kartinki-52.png"
     srcSet="https://gamerwall.pro/uploads/posts/2021-07/1627056530_50-gamerwall-pro-p-bronya-elfov-art-kartinki-52.png"
@@ -62,7 +62,6 @@ function SingleCharacterPage() {
           <Paper
             sx={{
               p: 2,
-              width: "300px",
               flexGrow: 1,
               display: "flex",
               justifyContent: "start",
@@ -72,9 +71,7 @@ function SingleCharacterPage() {
               color: "#050398"
             }}
           >
-            <Grid
-            
-            >
+            <Grid  >
                
               <Cell header="Имя" textContent={character.name} />
               <Cell header="Раса" textContent={character.race} />

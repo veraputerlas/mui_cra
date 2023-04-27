@@ -5,3 +5,8 @@
   flex-direction: column;
   gap: 50px;
 }
+.character_title{
+  display: flex;
+  justify-content: center;
+  max-width: fit-content;
+}
