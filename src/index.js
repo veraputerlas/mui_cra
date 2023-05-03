@@ -10,10 +10,6 @@ const defaultstate = {
   title: 'My title',
 }
 
-// const action = {
-//   type: 'UPDATE_TITLE',
-//   payload: 'NEW_TITLE'
-// }
 
 const reducer = (state = defaultstate, action) => {
   switch (action.type) {

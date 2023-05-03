@@ -7,7 +7,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Paper from "@mui/material/Paper";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useService from "../helpers/Service";
+import useService from "../helpers/service.js";
 import useDebounce from "../helpers/dobounce";
 
 function MainPage() {
@@ -26,7 +26,7 @@ function MainPage() {
 
   useEffect(() => {
     if (debouncedSearchValue) {
-      getAllCharacter(limit, debouncedSearchValue).then((res) => {
+      getAllCharacter("", debouncedSearchValue).then((res) => {
         setCharacterList(res);
       });
     }
@@ -52,7 +52,7 @@ function MainPage() {
           color: "#050398",
         }}
       >
-        Портал посвященный вселенной Властелина Колец
+        Персонажи вселенной Властелина Колец
       </Typography>
 
       <Divider />
@@ -82,20 +82,25 @@ const Content = ({
   characterList,
   limit,
   setLimit,
-
   setCharacterId,
 }) => {
   return (
     <>
       {characterList.length > 0 ? (
         <>
-          <ul>
+         <ul
+            style={{
+              listStyle: "none",
+            }}
+          >
             {characterList.length > 0 &&
               characterList.map((character) => {
                 return (
                   <li key={character.id}>
                     <h2 onClick={() => setCharacterId(character.id)}>
-                      <Link to={`/${character.id}`}>{character.name}</Link>
+                      <Link variant="body2" to={`/characters/${character.id}`}>
+                        {character.name}
+                      </Link>
                     </h2>
                   </li>
                 );

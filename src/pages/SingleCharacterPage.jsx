@@ -1,16 +1,18 @@
-// import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
+ import Stack from "@mui/material/Stack";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import CircularProgress from "@mui/material/CircularProgress";
+import Divider from "@mui/material/Divider";
+
 
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useService from "../helpers/Service";
+import useService from "../helpers/service";
+import Cell from "../components/ui/Cell";
 import "../../src/css/character.css"
 
 function SingleCharacterPage() {
@@ -20,7 +22,7 @@ function SingleCharacterPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (Number(id) === 0) return;
+    if (id === 0) return;
     getCharacterById(id).then((res) => {
       setCharacter(res);
     });
@@ -74,12 +76,18 @@ function SingleCharacterPage() {
             <Grid  >
                
               <Cell header="Имя" textContent={character.name} />
+              <Divider
+                sx={{
+                  h: "1px",
+                }}
+              />
               <Cell header="Раса" textContent={character.race} />
               <Cell header="Пол" textContent={character.gender} />
-              <Cell header="Дата рождения" textContent={character.birth} />
-              <Cell header="Дата смерти" textContent={character.death} />
-
-              
+              <Cell header="Дата рождения" textContent={character.death ? character.death : "Не указано"}
+ />
+              <Cell header="Дата смерти" textContent={character.death ? character.death : "Не указано"}
+ />
+            
             </Grid>
             
           </Paper>
@@ -116,41 +124,41 @@ function SingleCharacterPage() {
   );
 }
 
-const Cell = ({ header, textContent }) => {
-  return (
-    <>
-      <Grid
-        item
-        xs={12}
-        container
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="flex-end"
-      >
-        <Typography
-          variant="h2"
-          sx={{
-            textAlign: "center",
-            fontSize: "24px",
-            padding: "10px 0",
-          }}
-        >
-          {header}: &nbsp;
-        </Typography>
+// const Cell = ({ header, textContent }) => {
+//   return (
+//     <>
+//       <Grid
+//         item
+//         xs={12}
+//         container
+//         direction="row"
+//         justifyContent="flex-start"
+//         alignItems="flex-end"
+//       >
+//         <Typography
+//           variant="h2"
+//           sx={{
+//             textAlign: "center",
+//             fontSize: "24px",
+//             padding: "10px 0",
+//           }}
+//         >
+//           {header}: &nbsp;
+//         </Typography>
 
-        <Typography
-          variant="h2"
-          sx={{
-            textAlign: "center",
-            fontSize: "30px",
-            padding: "10px 0",
-          }}
-        >
-          {textContent}
-        </Typography>
-      </Grid>
-    </>
-  );
-};
+//         <Typography
+//           variant="h2"
+//           sx={{
+//             textAlign: "center",
+//             fontSize: "30px",
+//             padding: "10px 0",
+//           }}
+//         >
+//           {textContent}
+//         </Typography>
+//       </Grid>
+//     </>
+//   );
+// };
 
 export default SingleCharacterPage;
